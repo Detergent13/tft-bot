@@ -9,7 +9,6 @@ pkg_resources.require("python-imageseach-drov0==1.0.6")
 import pyautogui as auto
 from python_imagesearch.imagesearch import imagesearch as search
 import time
-import auth
 from printy import printy
 from printy import inputy
 
