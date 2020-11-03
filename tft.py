@@ -157,23 +157,10 @@ printy(r"""
 [c>]                          __/ |               @[<b]   \____/                                        @
 [c>]                         |___/                @[<b]                                                 @
 """)
-nulled_auth = inputy(f'Please enter your Nulled auth key! ')
 
-program_id = "1196345"
-secret_id = "NG3Y2PQ8HH9KHK6C96YEGFW9L9PNM4AM"
-check_auth = auth.Auth(nulled_auth, program_id, secret_id)
+printy(f"Authorization successful!", "nB")
+auto.alert("Press OK when you're in a TFT lobby!\n")
+print("Bot started, queuing up!")
+queue()
 
-value = True # check_auth.check()
-
-if value:
-    printy(f"Authorization successful!", "nB")
-    auto.alert("Press OK when you're in a TFT lobby!\n")
-    print("Bot started, queuing up!")
-    queue()
-elif value is False:
-    printy(f"You are not authorized, or this is an invalid key.", "rB")
-    exit()
-else:
-    print(f"Couldn't connect to the auth server! Please try again later.", "rB")
-    exit()
 # End auth + main script
