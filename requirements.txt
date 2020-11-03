@@ -1,0 +1,5 @@
+opencv-python==4.2.0.34
+PyAutoGUI==0.9.50
+python-imageseach-drov0==1.0.6
+requests==2.23.0
+colorama==0.4.3
