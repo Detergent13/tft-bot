@@ -61,7 +61,7 @@ def click_to(path, delay=.1):
 def queue():
     if onscreen("./captures/tft logo.png"):
         click_to("./captures/find match ready.png")
-    while not onscreen("./captures/loading 1.png"):
+    while not onscreen("./captures/loading.png"):
         time.sleep(1)
         click_to("./captures/accept.png")
 
@@ -88,11 +88,12 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
+        click_to("./captures/diana.png")
         click_to("./captures/fiora.png")
-        click_to("./captures/jarvan.png")
-        click_to("./captures/rakan.png")
-        click_to("./captures/xayah.png")
         click_to("./captures/yasuo.png")
+        click_to("./captures/garen.png")
+        click_to("./captures/wukong.png")
+        click_to("./captures/nidalee.png")
 
 
 def main():
@@ -121,11 +122,11 @@ def surrender():
 
     while not onscreen("./captures/surrender 1.png"):
         time.sleep(1)
-    while not onscreen("./captures/surrender 2 new.png"):
+    while not onscreen("./captures/surrender 2.png"):
         click_to("./captures/surrender 1.png")
 
     time.sleep(1)
-    click_to("./captures/surrender 2 new.png")
+    click_to("./captures/surrender 2.png")
     time.sleep(15)
 
     time.sleep(1)
