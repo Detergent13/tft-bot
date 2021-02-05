@@ -120,13 +120,13 @@ def main():
 def surrender():
     click_to("./captures/settings.png")
 
-    while not onscreen("./captures/surrender 1.png"):
+    while not onscreen("./captures/surrender 1 new.png"):
         time.sleep(1)
-    while not onscreen("./captures/surrender 2 new.png"):
-        click_to("./captures/surrender 1.png")
+    while not onscreen("./captures/surrender 2 newer.png"):
+        click_to("./captures/surrender 1 new.png")
 
     time.sleep(1)
-    click_to("./captures/surrender 2 new.png")
+    click_to("./captures/surrender 2 newer.png")
     time.sleep(15)
 
     time.sleep(1)
