@@ -88,11 +88,12 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/fiora.png")
-        click_to("./captures/jarvan.png")
-        click_to("./captures/rakan.png")
-        click_to("./captures/xayah.png")
-        click_to("./captures/yasuo.png")
+        click_to("./captures/diana.png")
+        click_to("./captures/fiora new.png")
+        click_to("./captures/yasuo new.png")
+        click_to("./captures/garen.png")
+        click_to("./captures/wukong.png")
+        click_to("./captures/nidalee.png")
 
 
 def main():
