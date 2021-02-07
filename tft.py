@@ -108,11 +108,11 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-2.png"):
+        while not onscreen("./captures/3-2.png"): # change this if you want to surrender at a different stage
             buy(1)
             click_to("./captures/reroll.png")
             time.sleep(1)
-    if onscreen("./captures/3-2.png"):
+    if onscreen("./captures/3-2.png"): # (and this)
         print("Surrendering now!")
         surrender()
 
@@ -149,17 +149,17 @@ def surrender():
 # Start auth + main script
 print("Developed by:")
 printy(r"""
-[c>] _____       _                            _   @[<b]            _   _       _ _          _  _        @
-[c>]|  __ \     | |                          | |  @[<b]    ____   | \ | |     | | |        | || |       @
-[c>]| |  | | ___| |_ ___ _ __ __ _  ___ _ __ | |_ @[<b]   / __ \  |  \| |_   _| | | ___  __| || |_ ___  @
-[c>]| |  | |/ _ \ __/ _ \ '__/ _` |/ _ \ '_ \| __|@[<b]  / / _` | | . ` | | | | | |/ _ \/ _` || __/ _ \ @
-[c>]| |__| |  __/ ||  __/ | | (_| |  __/ | | | |_ @[<b] | | (_| | | |\  | |_| | | |  __/ (_| || || (_) |@
-[c>]|_____/ \___|\__\___|_|  \__, |\___|_| |_|\__|@[<b]  \ \__,_| |_| \_|\__,_|_|_|\___|\__,_(_)__\___/ @
-[c>]                          __/ |               @[<b]   \____/                                        @
-[c>]                         |___/                @[<b]                                                 @
+[c>] _____       _                            _   @
+[c>]|  __ \     | |                          | |  @
+[c>]| |  | | ___| |_ ___ _ __ __ _  ___ _ __ | |_ @
+[c>]| |  | |/ _ \ __/ _ \ '__/ _` |/ _ \ '_ \| __|@
+[c>]| |__| |  __/ ||  __/ | | (_| |  __/ | | | |_ @
+[c>]|_____/ \___|\__\___|_|  \__, |\___|_| |_|\__|@
+[c>]                          __/ |               @
+[c>]                         |___/                @
 """)
 
-printy(f"Authorization successful!", "nB")
+printy(f"Welcome! You're running Detergent's TFT bot.\nPlease feel free to ask questions or contribute at https://github.com/Detergent13/tft-bot", "nB")
 auto.alert("Press OK when you're in a TFT lobby!\n")
 print("Bot started, queuing up!")
 queue()
