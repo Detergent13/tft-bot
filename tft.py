@@ -18,7 +18,7 @@ from printy import inputy
 import urllib3
 
 urllib3.disable_warnings()
-# If u havent installed your game in default path(windows) set your path here
+# If you haven't installed your game in default path (Windows) set your path here
 PATH = "default"
 auto.FAILSAFE = False
 
@@ -75,7 +75,7 @@ path is not the right or the League Client is not opened!")
 
     def create_game_lobby_tft(lcu_data, gm:str="Normal"):
         if gm.upper() != "NORMAL" and gm.upper() != "RANKED":
-            raise ValueError("Defined gamemode is unvalid!\nValid gamemode are Normal and Ranked.")
+            raise ValueError("Defined gamemode is invalid!\nValid gamemode are Normal and Ranked.")
         else:
             if gm.upper() == "NORMAL":
                 q_id = 1090
@@ -149,13 +149,13 @@ path is not the right or the League Client is not opened!")
             return "Not in queue!"
 
 # Start utility methods
-class auto_gui:
+class wrappers:
     def onscreen(path, precision=0.8):
         return search(path, precision)[0] != -1
 
     def search_to(path):
         pos = search(path)
-        if auto_gui.onscreen(path):
+        if wrappers.onscreen(path):
             auto.moveTo(pos)
             return pos
 
@@ -178,9 +178,9 @@ class auto_gui:
 
 
     def click_to(path, delay=.1):
-        if auto_gui.onscreen(path):
+        if wrappers.onscreen(path):
             auto.moveTo(search(path))
-            auto_gui.click_left(delay)
+            wrappers.click_left(delay)
         # print(path + " clicked")
 # End utility methods
 
@@ -200,46 +200,46 @@ class main:
 
 
     def loading():
-        while not auto_gui.onscreen("./captures/1-1.png"):
+        while not wrappers.onscreen("./captures/1-1.png"):
             time.sleep(1)
         print("Match starting!")
         main.start()
 
 
     def start():
-        while auto_gui.onscreen("./captures/1-1.png"):
+        while wrappers.onscreen("./captures/1-1.png"):
             auto.moveTo(888, 376)
-            auto_gui.click_right()
+            wrappers.click_right()
         print("In the match now!")
         main.main()
 
 
     def buy(iterations):
         for i in range(iterations):
-            auto_gui.click_to("./captures/diana.png")
-            auto_gui.click_to("./captures/fiora.png")
-            auto_gui.click_to("./captures/yasuo.png")
-            auto_gui.click_to("./captures/garen.png")
-            auto_gui.click_to("./captures/wukong.png")
-            auto_gui.click_to("./captures/nidalee.png")
+            wrappers.click_to("./captures/diana.png")
+            wrappers.click_to("./captures/fiora.png")
+            wrappers.click_to("./captures/yasuo.png")
+            wrappers.click_to("./captures/garen.png")
+            wrappers.click_to("./captures/wukong.png")
+            wrappers.click_to("./captures/nidalee.png")
 
 
     def main():
-        while not auto_gui.onscreen("./captures/2-4.png"):
+        while not wrappers.onscreen("./captures/2-4.png"):
             main.buy(1)
             time.sleep(1)
-        while auto_gui.onscreen("./captures/2-4.png"):
+        while wrappers.onscreen("./captures/2-4.png"):
             auto.moveTo(928, 396)
-            auto_gui.click_right()
+            wrappers.click_right()
             time.sleep(0.25)
         time.sleep(5)
 
-        if auto_gui.onscreen("./captures/2-5.png"):
-            while not auto_gui.onscreen("./captures/3-2.png"): # change this if you want to surrender at a different stage
+        if wrappers.onscreen("./captures/2-5.png"):
+            while not wrappers.onscreen("./captures/3-2.png"): # change this if you want to surrender at a different stage
                 main.buy(1)
-                auto_gui.click_to("./captures/reroll.png")
+                wrappers.click_to("./captures/reroll.png")
                 time.sleep(1)
-        if auto_gui.onscreen("./captures/3-2.png"): # (and this)
+        if wrappers.onscreen("./captures/3-2.png"): # (and this)
             print("Surrendering now!")
             main.surrender()
 
@@ -248,12 +248,12 @@ class main:
         auto.press('enter')
         auto.write('/ff')
         auto.press('enter')
-        while not auto_gui.onscreen("./captures/surrender 2.png"):
+        while not wrappers.onscreen("./captures/surrender 2.png"):
             auto.press('enter')
             auto.write('/ff')
             auto.press('enter')
         time.sleep(1)
-        auto_gui.click_to("./captures/surrender 2.png")
+        wrappers.click_to("./captures/surrender 2.png")
         time.sleep(15)
         time.sleep(1)
         lcu_data = lcu.connect(PATH)
