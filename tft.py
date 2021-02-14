@@ -16,7 +16,7 @@ import time
 from printy import printy
 from printy import inputy
 import urllib3
-
+import pydirectinput
 urllib3.disable_warnings()
 # If you haven't installed your game in default path (Windows) set your path here
 PATH = "default"
@@ -75,7 +75,7 @@ path is not the right or the League Client is not opened!")
 
     def create_game_lobby_tft(lcu_data, gm:str="Normal"):
         if gm.upper() != "NORMAL" and gm.upper() != "RANKED":
-            raise ValueError("Defined gamemode is invalid!\nValid gamemode are Normal and Ranked.")
+            raise ValueError("Defined gamemode is invalid!\nValid gamemodes are Normal and Ranked.")
         else:
             if gm.upper() == "NORMAL":
                 q_id = 1090
@@ -181,6 +181,11 @@ class wrappers:
         if wrappers.onscreen(path):
             auto.moveTo(search(path))
             wrappers.click_left(delay)
+
+    def click_to_r(path, delay=.1):
+        if wrappers.onscreen(path):
+            auto.moveTo(search(path))
+            wrappers.click_right(delay)
         # print(path + " clicked")
 # End utility methods
 
@@ -226,6 +231,7 @@ class main:
 
     def main():
         while not wrappers.onscreen("./captures/2-4.png"):
+            main.orbs(1)
             main.buy(1)
             time.sleep(1)
         while wrappers.onscreen("./captures/2-4.png"):
@@ -236,22 +242,30 @@ class main:
 
         if wrappers.onscreen("./captures/2-5.png"):
             while not wrappers.onscreen("./captures/3-2.png"): # change this if you want to surrender at a different stage
+                main.orbs(1)
                 main.buy(1)
-                wrappers.click_to("./captures/reroll.png")
+                pydirectinput.press('d')
+                pydirectinput.release('d')
                 time.sleep(1)
         if wrappers.onscreen("./captures/3-2.png"): # (and this)
             print("Surrendering now!")
             main.surrender()
 
+    def orbs(iterations=1):
+        for i in range(iterations):
+            wrappers.click_to_r("./captures/orb_white.png")
+            wrappers.click_to_r("./captures/orb_blue.png")
+            # wrappers.click_to("./captures/orb_red.png")
+            # wrappers.click_to("./captures/orb_fortune.png")
 
     def surrender():
-        auto.press('enter')
-        auto.write('/ff')
-        auto.press('enter')
-        while not wrappers.onscreen("./captures/surrender 2.png"):
-            auto.press('enter')
-            auto.write('/ff')
-            auto.press('enter')
+        pydirectinput.press('enter')
+        auto.write("/ff")
+        pydirectinput.press('enter')
+        while not auto_gui.onscreen("./captures/surrender 2.png"):
+            pydirectinput.press('enter')
+            auto.write("/ff")
+            pydirectinput.press('enter')
         time.sleep(1)
         wrappers.click_to("./captures/surrender 2.png")
         time.sleep(15)
