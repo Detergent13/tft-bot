@@ -199,7 +199,7 @@ class main:
         lcu.start_search(lcu_data)
         while True:
             response = lcu.auto_accept_current_ready_check(lcu_data)
-            if response == "Accepted":
+            if response == "Accepted!":
                 time.sleep(5)
                 response = lcu.auto_accept_current_ready_check(lcu_data)
                 if response == "Not in queue!":
