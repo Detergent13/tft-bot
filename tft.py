@@ -248,7 +248,6 @@ class main:
                 main.orbs(1)
                 main.buy(1)
                 pydirectinput.press('d')
-                pydirectinput.release('d')
                 time.sleep(1)
         if wrappers.onscreen("./captures/3-2.png"): # (and this)
             print("Surrendering now!")
@@ -265,7 +264,7 @@ class main:
         pydirectinput.press('enter')
         auto.write("/ff")
         pydirectinput.press('enter')
-        while not auto_gui.onscreen("./captures/surrender 2.png"):
+        while not wrappers.onscreen("./captures/surrender 2.png"):
             pydirectinput.press('enter')
             auto.write("/ff")
             pydirectinput.press('enter')
