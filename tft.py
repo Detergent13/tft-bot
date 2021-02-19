@@ -261,9 +261,6 @@ class main:
             # wrappers.click_to("./captures/orb_fortune.png")
 
     def surrender():
-        pydirectinput.press('enter')
-        auto.write("/ff")
-        pydirectinput.press('enter')
         while not wrappers.onscreen("./captures/surrender 2.png"):
             pydirectinput.press('enter')
             auto.write("/ff")
@@ -271,7 +268,14 @@ class main:
         time.sleep(1)
         wrappers.click_to("./captures/surrender 2.png")
         time.sleep(15)
-        time.sleep(1)
+        
+        while wrappers.onscreen("./captures/missions ok.png"):
+            wrappers.click_to("./captures/missions ok.png")
+            time.sleep(5)
+        while wrappers.onscreen("./captures/skip waiting for stats.png"):
+            wrappers.click_to("./captures/skip waiting for stats.png")
+        time.sleep(5)
+        
         lcu_data = lcu.connect(PATH)
         lcu.play_again(lcu_data)
         time.sleep(10)
