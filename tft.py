@@ -17,6 +17,8 @@ from printy import printy
 from printy import inputy
 import urllib3
 import pydirectinput
+import json
+
 urllib3.disable_warnings()
 # If you haven't installed your game in default path (Windows) set your path here
 PATH = "default"
@@ -221,16 +223,28 @@ class main:
         print("In the match now!")
         main.main()
 
+    def
 
     def buy(iterations):
+        wanted_champs = main.get_combo(1)
         for i in range(iterations):
-            wrappers.click_to("./captures/diana.png")
-            wrappers.click_to("./captures/fiora.png")
-            wrappers.click_to("./captures/yasuo.png")
-            wrappers.click_to("./captures/garen.png")
-            wrappers.click_to("./captures/wukong.png")
-            wrappers.click_to("./captures/nidalee.png")
+            for x in wanted_champs:
+                wrappers.click_to("./captures/champions/{}.png".format(x.lower()))
 
+    def get_combo(set:str=1):
+        version = requests.get("https://ddragon.leagueoflegends.com/api/versions.json").json()[0]
+        champion_id = {}
+        champs_req = requests.get(F"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json").json()
+        combojson = requests.get("https://raw.githubusercontent.com/BadMaliciousPyScripts/combo_json/main/combos.json").json()
+        wanted_champs = []
+        set = "Set{}".format(int(set))
+        for x in list(champs_req["data"]):
+            try:
+                if file[set]["Champions"][x]:
+                    wanted_champs.append(x)
+            except KeyError:
+                pass
+        return wanted_champs
 
     def main():
         while not wrappers.onscreen("./captures/2-4.png"):
@@ -257,7 +271,7 @@ class main:
         for i in range(iterations):
             wrappers.click_to_r("./captures/orb_white.png")
             wrappers.click_to_r("./captures/orb_blue.png")
-            # wrappers.click_to("./captures/orb_red.png")
+            wrappers.click_to("./captures/orb_red.png")
             # wrappers.click_to("./captures/orb_fortune.png")
 
     def surrender():
@@ -268,14 +282,14 @@ class main:
         time.sleep(1)
         wrappers.click_to("./captures/surrender 2.png")
         time.sleep(15)
-        
+
         while wrappers.onscreen("./captures/missions ok.png"):
             wrappers.click_to("./captures/missions ok.png")
             time.sleep(5)
         while wrappers.onscreen("./captures/skip waiting for stats.png"):
             wrappers.click_to("./captures/skip waiting for stats.png")
         time.sleep(5)
-        
+
         lcu_data = lcu.connect(PATH)
         lcu.play_again(lcu_data)
         time.sleep(10)
