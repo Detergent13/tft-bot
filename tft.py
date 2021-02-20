@@ -223,7 +223,6 @@ class main:
         print("In the match now!")
         main.main()
 
-    def
 
     def buy(iterations):
         wanted_champs = main.get_combo(1)
