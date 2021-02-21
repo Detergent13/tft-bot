@@ -23,6 +23,7 @@ urllib3.disable_warnings()
 # If you haven't installed your game in default path (Windows) set your path here
 PATH = "default"
 auto.FAILSAFE = False
+pydirectinput.FAILSAFE = False
 
 class xtra:
     def base64encode(text):
