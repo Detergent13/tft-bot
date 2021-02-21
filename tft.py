@@ -292,7 +292,6 @@ class main:
         lcu_data = lcu.connect(PATH)
         lcu.play_again(lcu_data)
         time.sleep(10)
-        input()
         print("Queuing up again!")
         main.queue()
 # End main process
