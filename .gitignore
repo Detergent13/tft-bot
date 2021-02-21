@@ -130,3 +130,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# combo json
+combos.json
+
+# testing files MPyS/VanargandTheLoliGod#0007
+testing.py
+testing2.py
