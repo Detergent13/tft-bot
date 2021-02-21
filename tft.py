@@ -239,7 +239,7 @@ class main:
         set = "Set{}".format(int(set))
         for x in list(champs_req["data"]):
             try:
-                if file[set]["Champions"][x]:
+                if combojson[set]["Champions"][x]:
                     wanted_champs.append(x)
             except KeyError:
                 pass
@@ -288,7 +288,6 @@ class main:
         while wrappers.onscreen("./captures/skip waiting for stats.png"):
             wrappers.click_to("./captures/skip waiting for stats.png")
         time.sleep(5)
-
         lcu_data = lcu.connect(PATH)
         lcu.play_again(lcu_data)
         time.sleep(10)
