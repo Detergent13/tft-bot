@@ -134,7 +134,7 @@ def surrender():
 
     while onscreen("./captures/missions ok.png"):
         click_to("./captures/missions ok.png")
-    time.sleep(5)
+        time.sleep(2)
     while onscreen("./captures/skip waiting for stats.png"):
         click_to("./captures/skip waiting for stats.png")
     time.sleep(5)
