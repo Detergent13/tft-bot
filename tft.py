@@ -1,10 +1,12 @@
 # Detergent's TFT Bot
 # Branch: main
 
+
+# TODO: UP TO DATE WITH LATEST VERSION OF TFT luv u detergent from darkflame
 import pkg_resources
 
 pkg_resources.require("PyAutoGUI==0.9.50")
-pkg_resources.require("opencv-python==4.2.0.34")
+pkg_resources.require("opencv-python==4.5.1.48")
 pkg_resources.require("python-imageseach-drov0==1.0.6")
 
 import pyautogui as auto
@@ -89,17 +91,31 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/diana.png")
-        click_to("./captures/fiora.png")
-        click_to("./captures/yasuo.png")
-        click_to("./captures/garen.png")
-        click_to("./captures/wukong.png")
-        click_to("./captures/nidalee.png")
+        #updated troops
+        click_to("./captures/ziggs.png")
+        click_to("./captures/lulu.png")
+        click_to("./captures/kled.png")
+        click_to("./captures/kennen.png")
+        click_to("./captures/poppy.png")
+        click_to("./captures/gragas.png")
+        click_to("./captures/vlad.png")
+
+#new function, get the item from 2-2 and 3-2, working properly
+def buy_item():
+    if onscreen("./captures/2-2.png"):
+        auto.moveTo(734,974)
+        click_left()
+    if onscreen("./captures/3-2.png"):
+        auto.moveTo(734,974)
+        click_left()
+    
 
 
 def main():
     while not onscreen("./captures/2-4.png"):
         buy(1)
+        #new feature  IT WORKS AAAAAAA
+        buy_item()
         time.sleep(1)
     while onscreen("./captures/2-4.png"):
         auto.moveTo(928, 396)
@@ -109,11 +125,12 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-2.png"): # change this if you want to surrender at a different stage
+        while not onscreen("./captures/3-4.png"): # change this if you want to surrender at a different stage
             buy(1)
+            buy_item()
             click_to("./captures/reroll.png")
             time.sleep(1)
-    if onscreen("./captures/3-2.png"): # (and this)
+    if onscreen("./captures/3-4.png"): # (and this)
         print("Surrendering now!")
         surrender()
 
