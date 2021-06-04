@@ -132,14 +132,14 @@ def main():
     time.sleep(5)
     
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-1.png"): # change this if you want to surrender at a different stage
+        while not onscreen("./captures/3-4.png"): # change this if you want to surrender at a different stage
             buy(1)
             buy_item()
             click_to("./captures/reroll.png")
             time.sleep(1)
             checks() #added checks to see if game was inturrupted 
             
-    if onscreen("./captures/3-1.png"): # (and this)
+    if onscreen("./captures/3-4.png"): # (and this)
         print("Surrendering now!")
         surrender()
 
