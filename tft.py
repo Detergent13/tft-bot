@@ -109,7 +109,13 @@ def buy_item():
         auto.moveTo(734,974)
         click_left()
     
-
+def checks(): #added checks to see if game was inturrupted 
+    if onscreen("./captures/play again.png"):
+        wonmatch()
+    if onscreen("./captures/reconnect.png"):
+        print("reconnecting!")
+        time.sleep(0.5)
+        click_to("./captures/reconnect.png")
 
 def main():
     while not onscreen("./captures/2-4.png"):
@@ -117,24 +123,43 @@ def main():
         #new feature  IT WORKS AAAAAAA
         buy_item()
         time.sleep(1)
+        checks() #added checks to see if game was inturrupted 
     while onscreen("./captures/2-4.png"):
         auto.moveTo(928, 396)
         click_right()
         time.sleep(0.25)
 
     time.sleep(5)
-
+    
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-4.png"): # change this if you want to surrender at a different stage
+        while not onscreen("./captures/3-1.png"): # change this if you want to surrender at a different stage
             buy(1)
             buy_item()
             click_to("./captures/reroll.png")
             time.sleep(1)
-    if onscreen("./captures/3-4.png"): # (and this)
+            checks() #added checks to see if game was inturrupted 
+            
+    if onscreen("./captures/3-1.png"): # (and this)
         print("Surrendering now!")
         surrender()
 
 
+def wonmatch(): #Added wonmatch case
+    print("Game Won?? requeing")
+    time.sleep(3)
+
+    while onscreen("./captures/missions ok.png"):
+        click_to("./captures/missions ok.png")
+        time.sleep(2)
+    while onscreen("./captures/skip waiting for stats.png"):
+        click_to("./captures/skip waiting for stats.png")
+    time.sleep(5)
+    while onscreen("./captures/play again.png"):
+        click_to("./captures/play again.png")
+
+    time.sleep(5)
+    queue()
+    
 def surrender():
     click_to("./captures/settings.png")
 
@@ -145,7 +170,7 @@ def surrender():
 
     time.sleep(1)
     click_to("./captures/surrender 2.png")
-    time.sleep(15)
+    time.sleep(10)
 
     time.sleep(1)
 
@@ -158,7 +183,7 @@ def surrender():
     while onscreen("./captures/play again.png"):
         click_to("./captures/play again.png")
 
-    time.sleep(10)
+    time.sleep(5)
     print("Queuing up again!")
     queue()
 # End main process
