@@ -111,7 +111,7 @@ def buy_item():
     
 def checks(): #added checks to see if game was inturrupted 
     if onscreen("./captures/play again.png"):
-        wonmatch()
+        won_match()
     if onscreen("./captures/reconnect.png"):
         print("reconnecting!")
         time.sleep(0.5)
@@ -143,11 +143,7 @@ def main():
         print("Surrendering now!")
         surrender()
 
-
-def wonmatch(): #Added wonmatch case
-    print("Game Won?? requeing")
-    time.sleep(3)
-
+def end_match():
     while onscreen("./captures/missions ok.png"):
         click_to("./captures/missions ok.png")
         time.sleep(2)
@@ -156,6 +152,12 @@ def wonmatch(): #Added wonmatch case
     time.sleep(5)
     while onscreen("./captures/play again.png"):
         click_to("./captures/play again.png")
+
+def won_match(): #Added wonmatch case
+    print("Looks like we won! Re-queuing")
+    time.sleep(3)
+
+    end_match()
 
     time.sleep(5)
     queue()
@@ -174,14 +176,7 @@ def surrender():
 
     time.sleep(1)
 
-    while onscreen("./captures/missions ok.png"):
-        click_to("./captures/missions ok.png")
-        time.sleep(2)
-    while onscreen("./captures/skip waiting for stats.png"):
-        click_to("./captures/skip waiting for stats.png")
-    time.sleep(5)
-    while onscreen("./captures/play again.png"):
-        click_to("./captures/play again.png")
+    end_match()
 
     time.sleep(5)
     print("Queuing up again!")
