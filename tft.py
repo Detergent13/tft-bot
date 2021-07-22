@@ -103,6 +103,7 @@ def buy(iterations):
 def buy_item():
     click_to("./captures/choose_one.png")    #changed this to just another image that it clicks.
 
+    
 def checks(): #added checks to see if game was interrupted 
     if onscreen("./captures/play again.png"):
         won_match()
@@ -148,7 +149,9 @@ def end_match():
             click_to("./captures/skip waiting for stats.png")
             time.sleep(5)
         while onscreen("./captures/play again.png"):
-            click_to("./captures/play again.png"
+            click_to("./captures/play again.png")
+            
+            
 def won_match(): 
     print("Looks like we won! Re-queuing")
     time.sleep(3)
@@ -158,6 +161,7 @@ def won_match():
     time.sleep(5)
     queue()
 
+    
 def surrender():
     click_to("./captures/settings.png")
 
