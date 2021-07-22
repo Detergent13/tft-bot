@@ -1,8 +1,6 @@
 # Detergent's TFT Bot
 # Branch: main
 
-
-# TODO: UP TO DATE WITH LATEST VERSION OF TFT luv u detergent from darkflame
 import pkg_resources
 
 pkg_resources.require("PyAutoGUI==0.9.50")
@@ -100,60 +98,58 @@ def buy(iterations):
         click_to("./captures/gragas.png")
         click_to("./captures/vlad.png")
 
+
 #new function, get the item from 2-2 and 3-2, working properly
 def buy_item():
-    if onscreen("./captures/2-2.png"):
-        auto.moveTo(734,974)
-        click_left()
-    if onscreen("./captures/3-2.png"):
-        auto.moveTo(734,974)
-        click_left()
-    
-def checks(): #added checks to see if game was inturrupted 
+    click_to("./captures/choose_one.png")    #changed this to just another image that it clicks.
+
+def checks(): #added checks to see if game was interrupted 
     if onscreen("./captures/play again.png"):
         won_match()
+    if onscreen("./captures/dead.PNG"):   #added another check for if you actually lose in cases where you surrender at a later time. 
+            click_to("./captures/dead.PNG")
+            won_match()
     if onscreen("./captures/reconnect.png"):
         print("reconnecting!")
         time.sleep(0.5)
         click_to("./captures/reconnect.png")
 
+
 def main():
     while not onscreen("./captures/2-4.png"):
         buy(1)
-        #new feature  IT WORKS AAAAAAA
         buy_item()
         time.sleep(1)
-        checks() #added checks to see if game was inturrupted 
+        checks() 
     while onscreen("./captures/2-4.png"):
         auto.moveTo(928, 396)
         click_right()
         time.sleep(0.25)
 
     time.sleep(5)
-    
+
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-4.png"): # change this if you want to surrender at a different stage
+        while not onscreen("./captures/6-6.png"): # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(1)
             buy_item()
             click_to("./captures/reroll.png")
             time.sleep(1)
-            checks() #added checks to see if game was inturrupted 
-            
-    if onscreen("./captures/3-4.png"): # (and this)
-        print("Surrendering now!")
+            checks() 
+        print("Surrendering now!") #moved these two lines out of the if statement to make it more streamline.
         surrender()
 
-def end_match():
-    while onscreen("./captures/missions ok.png"):
-        click_to("./captures/missions ok.png")
-        time.sleep(2)
-    while onscreen("./captures/skip waiting for stats.png"):
-        click_to("./captures/skip waiting for stats.png")
-    time.sleep(5)
-    while onscreen("./captures/play again.png"):
-        click_to("./captures/play again.png")
 
-def won_match(): #Added wonmatch case
+def end_match():
+    while not onscreen("./captures/find match ready.png"):   #added a main loop for the end match function to ensure you make it to the find match button.
+        while onscreen("./captures/missions ok.png"):
+            click_to("./captures/missions ok.png")
+            time.sleep(2)
+        while onscreen("./captures/skip waiting for stats.png"):
+            click_to("./captures/skip waiting for stats.png")
+            time.sleep(5)
+        while onscreen("./captures/play again.png"):
+            click_to("./captures/play again.png"
+def won_match(): 
     print("Looks like we won! Re-queuing")
     time.sleep(3)
 
@@ -161,14 +157,16 @@ def won_match(): #Added wonmatch case
 
     time.sleep(5)
     queue()
-    
+
 def surrender():
     click_to("./captures/settings.png")
 
     while not onscreen("./captures/surrender 1.png"):
+        click_to("./captures/settings.png")      #added this in case it gets interrupted or misses
         time.sleep(1)
     while not onscreen("./captures/surrender 2.png"):
         click_to("./captures/surrender 1.png")
+        checks()     #added a check here for the rare case that the game ended before the surrender finished.
 
     time.sleep(1)
     click_to("./captures/surrender 2.png")
