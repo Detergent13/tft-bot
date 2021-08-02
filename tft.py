@@ -153,7 +153,7 @@ def end_match():
             
             
 def won_match(): 
-    print("Looks like we won! Re-queuing")
+    print("Looks like the match is over! Re-queuing")
     time.sleep(3)
 
     end_match()
