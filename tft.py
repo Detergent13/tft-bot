@@ -94,7 +94,7 @@ def buy(iterations):
         click_to("./captures/lulu.png")
         click_to("./captures/kled.png")
         click_to("./captures/kennen.png")
-        click_to("./capturespoppy.png")
+        click_to("./captures/poppy.png")
         click_to("./captures/tristana.png")
         click_to("./captures/vlad.png")
 
