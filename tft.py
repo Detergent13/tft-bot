@@ -100,7 +100,7 @@ def checks():  # checks to see if game was interrupted
 
 def main():
     while not onscreen("./captures/2-4.png"):
-        buy(1)
+        buy(5)
         time.sleep(1)
         checks() 
     while onscreen("./captures/2-4.png"):
@@ -112,7 +112,7 @@ def main():
 
     if onscreen("./captures/2-5.png"):
         while not onscreen("./captures/3-1.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
-            buy(1)
+            buy(5)
             click_to("./captures/reroll.png")
             time.sleep(1)
             checks() 
