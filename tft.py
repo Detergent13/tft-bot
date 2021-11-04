@@ -98,11 +98,6 @@ def buy(iterations):
         click_to("./captures/tristana.png")
         click_to("./captures/vlad.png")
 
-
-#new function, get the item from 2-2 and 3-2, working properly
-def buy_item():
-    click_to("./captures/choose_one.png")    #changed this to just another image that it clicks.
-
     
 def checks(): #added checks to see if game was interrupted 
     if onscreen("./captures/play again.png"):
@@ -119,7 +114,6 @@ def checks(): #added checks to see if game was interrupted
 def main():
     while not onscreen("./captures/2-4.png"):
         buy(1)
-        buy_item()
         time.sleep(1)
         checks() 
     while onscreen("./captures/2-4.png"):
@@ -132,7 +126,6 @@ def main():
     if onscreen("./captures/2-5.png"):
         while not onscreen("./captures/6-6.png"): # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(1)
-            buy_item()
             click_to("./captures/reroll.png")
             time.sleep(1)
             checks() 
