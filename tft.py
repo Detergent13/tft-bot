@@ -2,17 +2,14 @@
 # Branch: main
 
 import pkg_resources
-
-pkg_resources.require("PyAutoGUI==0.9.50")
-pkg_resources.require("opencv-python==4.5.1.48")
-pkg_resources.require("python-imageseach-drov0==1.0.6")
-
 import pyautogui as auto
 from python_imagesearch.imagesearch import imagesearch as search
 import time
 from printy import printy
-from printy import inputy
 
+pkg_resources.require("PyAutoGUI==0.9.50")
+pkg_resources.require("opencv-python==4.5.1.48")
+pkg_resources.require("python-imageseach-drov0==1.0.6")
 
 auto.FAILSAFE = False
 
@@ -26,10 +23,7 @@ def search_to(path):
     pos = search(path)
     if onscreen(path):
         auto.moveTo(pos)
-        # print(path + " found")
         return pos
-#   else:
-    #   print(path + " not found")
 
 
 def click_key(key, delay=.1):
@@ -54,7 +48,6 @@ def click_to(path, delay=.1):
     if onscreen(path):
         auto.moveTo(search(path))
         click_left(delay)
-        # print(path + " clicked")
 # End utility methods
 
 
@@ -89,7 +82,6 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        #updated troops
         click_to("./captures/ziggs.png")
         click_to("./captures/lulu.png")
         click_to("./captures/kled.png")
@@ -99,12 +91,12 @@ def buy(iterations):
         click_to("./captures/vlad.png")
 
     
-def checks(): #added checks to see if game was interrupted 
+def checks():  # checks to see if game was interrupted
     if onscreen("./captures/play again.png"):
         won_match()
-    if onscreen("./captures/dead.PNG"):   #added another check for if you actually lose in cases where you surrender at a later time. 
-            click_to("./captures/dead.PNG")
-            won_match()
+    if onscreen("./captures/dead.PNG"):  # check for loss
+        click_to("./captures/dead.PNG")
+        won_match()
     if onscreen("./captures/reconnect.png"):
         print("reconnecting!")
         time.sleep(0.5)
@@ -124,17 +116,17 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/6-6.png"): # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
+        while not onscreen("./captures/6-6.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(1)
             click_to("./captures/reroll.png")
             time.sleep(1)
             checks() 
-        print("Surrendering now!") #moved these two lines out of the if statement to make it more streamline.
+        print("Surrendering now!")
         surrender()
 
 
 def end_match():
-    while not onscreen("./captures/find match ready.png"):   #added a main loop for the end match function to ensure you make it to the find match button.
+    while not onscreen("./captures/find match ready.png"):  # added a main loop for the end match function to ensure you make it to the find match button.
         while onscreen("./captures/missions ok.png"):
             click_to("./captures/missions ok.png")
             time.sleep(2)
@@ -159,11 +151,11 @@ def surrender():
     click_to("./captures/settings.png")
 
     while not onscreen("./captures/surrender 1.png"):
-        click_to("./captures/settings.png")      #added this in case it gets interrupted or misses
+        click_to("./captures/settings.png")  # just in case it gets interrupted or misses
         time.sleep(1)
     while not onscreen("./captures/surrender 2.png"):
         click_to("./captures/surrender 1.png")
-        checks()     #added a check here for the rare case that the game ended before the surrender finished.
+        checks()  # added a check here for the rare case that the game ended before the surrender finished.
 
     time.sleep(1)
     click_to("./captures/surrender 2.png")
