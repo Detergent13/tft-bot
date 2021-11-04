@@ -82,13 +82,8 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/ziggs.png")
-        click_to("./captures/lulu.png")
-        click_to("./captures/kled.png")
-        click_to("./captures/kennen.png")
-        click_to("./captures/poppy.png")
-        click_to("./captures/tristana.png")
-        click_to("./captures/vlad.png")
+        click_to("./captures/chemtech.png")
+        click_to("./captures/scrap.png")
 
     
 def checks():  # checks to see if game was interrupted
@@ -116,7 +111,7 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/6-6.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
+        while not onscreen("./captures/3-1.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(1)
             click_to("./captures/reroll.png")
             time.sleep(1)
