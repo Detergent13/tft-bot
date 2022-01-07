@@ -13,6 +13,8 @@ pkg_resources.require("python-imageseach-drov0==1.0.6")
 
 auto.FAILSAFE = False
 
+global gamecount
+gamecount = 0
 
 # Start utility methods
 def onscreen(path, precision=0.8):
@@ -58,7 +60,8 @@ def queue():
     while not onscreen("./captures/loading.png"):
         time.sleep(1)
         click_to("./captures/accept.png")
-
+    global starttimer
+    starttimer = time.time()
     print("Loading!")
     loading()
 
@@ -133,7 +136,22 @@ def end_match():
             
             
 def won_match(): 
-    print("Looks like the match is over! Re-queuing")
+    global gamecount
+    global endtimer
+    endtimer = time.time()
+    gamecount += 1
+    sec = (endtimer - starttimer)
+    hours = sec // 3600
+    sec = sec - hours*3600
+    mu = sec // 60
+    ss = sec - mu*60
+    gamecount2 = str(gamecount)
+    #result_list = str(datetime.timedelta(seconds=sec)).split(".")
+    print("-------------------------------------")
+    print("Game End")
+    print("Play Time : ", int(float(hours)), "Hour", int(float(mu)), "Min", int(float(ss)), "Sec")
+    print("Gamecount : ", gamecount2)
+    print("-------------------------------------")
     time.sleep(3)
 
     end_match()
