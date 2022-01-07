@@ -60,7 +60,8 @@ def queue():
     while not onscreen("./captures/loading.png"):
         time.sleep(1)
         click_to("./captures/accept.png")
-
+    global starttimer
+    starttimer = time.time()
     print("Loading!")
     loading()
 
