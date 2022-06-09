@@ -85,8 +85,8 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/chemtech.png")
-        click_to("./captures/scrap.png")
+        click_to("./captures/trait/bruiser.png")
+        click_to("./captures/trait/mage.png")
 
     
 def checks():  # checks to see if game was interrupted
@@ -136,27 +136,14 @@ def end_match():
             
             
 def won_match(): 
-    global gamecount
-    global endtimer
-    endtimer = time.time()
-    gamecount += 1
-    sec = (endtimer - starttimer)
-    hours = sec // 3600
-    sec = sec - hours*3600
-    mu = sec // 60
-    ss = sec - mu*60
-    gamecount2 = str(gamecount)
-    #result_list = str(datetime.timedelta(seconds=sec)).split(".")
-    print("-------------------------------------")
-    print("Game End")
-    print("Play Time : ", int(float(hours)), "Hour", int(float(mu)), "Min", int(float(ss)), "Sec")
-    print("Gamecount : ", gamecount2)
-    print("-------------------------------------")
+    print_timer()    
+
     time.sleep(3)
 
     end_match()
 
     time.sleep(5)
+    print("Queuing up again!")
     queue()
 
     
@@ -179,11 +166,34 @@ def surrender():
     end_match()
 
     time.sleep(5)
+    
+    print_timer()
+    
     print("Queuing up again!")
     queue()
+
+
+def print_timer():
+    global gamecount
+    global endtimer
+    endtimer = time.time()
+    gamecount += 1
+    sec = (endtimer - starttimer)
+    hours = sec // 3600
+    sec = sec - hours*3600
+    mu = sec // 60
+    ss = sec - mu*60
+    gamecount2 = str(gamecount)
+    #result_list = str(datetime.timedelta(seconds=sec)).split(".")
+    print("-------------------------------------")
+    print("Game End")
+    print("Play Time : ", int(float(hours)), "Hour", int(float(mu)), "Min", int(float(ss)), "Sec")
+    print("Gamecount : ", gamecount2)
+    print("-------------------------------------")
+    print("Queuing up again!")
 # End main process
-
-
+    
+    
 # Start auth + main script
 print("Developed by:")
 printy(r"""
