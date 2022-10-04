@@ -1,5 +1,4 @@
 # Detergent's TFT Bot
-# Branch: main
 
 import pkg_resources
 import pyautogui as auto
@@ -76,19 +75,23 @@ def loading():
 
 def start():
     while onscreen("./captures/1-1.png"):
-        auto.moveTo(888, 376)
+        auto.moveTo(1270, 795)   # use print(auto.position()) to look for a better position
         click_right()
 
     print("In the match now!")
     main()
 
-
+######################################################################################################################################
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/trait/bruiser.png")
-        click_to("./captures/trait/mage.png")
+        if not onscreen("./captures/gold/0.png"):
+                click_to("./captures/trait/jade/jade.png")
+                time.sleep(0.5)
+        if not onscreen("./captures/gold/0.png"):
+                click_to("./captures/trait/bruiser/bruiser.png")
+                time.sleep(0.5)
 
-    
+######################################################################################################################################
 def checks():  # checks to see if game was interrupted
     if onscreen("./captures/play again.png"):
         won_match()
@@ -114,9 +117,22 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-1.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
+        while not onscreen("./captures/3-2.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(5)
-            click_to("./captures/reroll.png")
+            if not onscreen("./captures/gold/0.png") or not ("./captures/1.png") or not ("./captures/2.png") or not ("./captures/3.png"):
+                click_to("./captures/xp_buy.png")
+                time.sleep(1)
+            time.sleep(1)
+            if onscreen ("./captures/take_all.png"): #treasure dragon, dont reroll just take it
+                click_to("./captures/take_all.png")
+                time.sleep(1)
+            if not onscreen("./captures/gold/0.png") or not ("./captures/1.png") or not ("./captures/2.png") or not ("./captures/3.png") or not ("./captures/4.png") or not ("./captures/5.png") or not ("./captures/6.png"):
+                click_to("./captures/reroll.png")
+                time.sleep(1)
+            #tactician runs to position to collect astral orbs
+            auto.moveTo(866, 820)
+            click_right()
+            #
             time.sleep(1)
             checks() 
         print("Surrendering now!")
@@ -126,6 +142,13 @@ def main():
 def end_match():
     while not onscreen("./captures/find match ready.png"):  # added a main loop for the end match function to ensure you make it to the find match button.
         while onscreen("./captures/missions ok.png"):
+            #screenshot if you have an "ok" button
+            t = time.localtime()    # added for printing time
+            current_time = time.strftime("%H%M%S", t) #for the changing file name
+            myScreenshot = auto.screenshot()
+            myScreenshot.save(rf'./screenshots\{current_time}.png')
+            time.sleep(2)
+            print("SS saved")
             click_to("./captures/missions ok.png")
             time.sleep(2)
         while onscreen("./captures/skip waiting for stats.png"):
@@ -184,9 +207,11 @@ def print_timer():
     mu = sec // 60
     ss = sec - mu*60
     gamecount2 = str(gamecount)
+    t = time.localtime()    # added for printing time
+    current_time = time.strftime("%H:%M:%S", t)
     #result_list = str(datetime.timedelta(seconds=sec)).split(".")
     print("-------------------------------------")
-    print("Game End")
+    print("Game End",current_time)
     print("Play Time : ", int(float(hours)), "Hour", int(float(mu)), "Min", int(float(ss)), "Sec")
     print("Gamecount : ", gamecount2)
     print("-------------------------------------")
@@ -197,14 +222,21 @@ def print_timer():
 # Start auth + main script
 print("Developed by:")
 printy(r"""
-[c>] _____       _                            _   @
-[c>]|  __ \     | |                          | |  @
-[c>]| |  | | ___| |_ ___ _ __ __ _  ___ _ __ | |_ @
-[c>]| |  | |/ _ \ __/ _ \ '__/ _` |/ _ \ '_ \| __|@
-[c>]| |__| |  __/ ||  __/ | | (_| |  __/ | | | |_ @
-[c>]|_____/ \___|\__\___|_|  \__, |\___|_| |_|\__|@
-[c>]                          __/ |               @
-[c>]                         |___/                @
+[c>] _____       _                            _     @
+[c>]|  __ \     | |                          | |    @
+[c>]| |  | | ___| |_ ___ _ __ __ _  ___ _ __ | |_   @
+[c>]| |  | |/ _ \ __/ _ \ '__/ _` |/ _ \ '_ \| __|  @
+[c>]| |__| |  __/ ||  __/ | | (_| |  __/ | | | |_   @
+[c>]|_____/ \___|\__\___|_|  \__, |\___|_| |_|\__|  @
+[c>]                          __/ |                 @
+[c>]                         |___/                  @
+[c>]                                                @
+[c>]   _________       __    _________    .________ @
+[c>]  /   _____/ _____/  |_  \______  \   |   ____/ @
+[c>]  \_____  \_/ __ \   __\     /    /   |____  \  @
+[c>]  /        \  ___/|  |      /    /    /       \ @
+[c>] /_______  /\___  >__|     /____/ /\ /______  / @
+[c>]         \/     \/                \/        \/  @
 """)
 
 printy(f"Welcome! You're running Detergent's TFT bot.\nPlease feel free to ask questions or contribute at https://github.com/Detergent13/tft-bot", "nB")
