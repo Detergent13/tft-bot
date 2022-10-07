@@ -28,25 +28,25 @@ def search_to(path):
         return pos
 
 
-def click_key(key, delay=.1):
+def click_key(key, delay=.1) -> None:
     auto.keyDown(key)
     time.sleep(delay)
     auto.keyUp(key)
 
 
-def click_left(delay=.1):
+def click_left(delay=.1) -> None:
     auto.mouseDown()
     time.sleep(delay)
     auto.mouseUp()
 
 
-def click_right(delay=.1):
+def click_right(delay=.1) -> None:
     auto.mouseDown(button='right')
     time.sleep(delay)
     auto.mouseUp(button='right')
 
 
-def click_to(path, delay=.1):
+def click_to(path, delay=.1) -> None:
     if onscreen(path):
         auto.moveTo(search(path))
         click_left(delay)
@@ -61,12 +61,12 @@ def queue():
         time.sleep(1)
         click_to("./captures/accept.png")
     global starttimer
-    starttimer = time.time()
+    starttimer: float = time.time()
     print("Loading!")
     loading()
 
 
-def loading():
+def loading() -> None:
     while not onscreen("./captures/1-1.png"):
         time.sleep(1)
 
@@ -74,7 +74,7 @@ def loading():
     start()
 
 
-def start():
+def start() -> None:
     while onscreen("./captures/1-1.png"):
         auto.moveTo(888, 376)
         click_right()
@@ -83,13 +83,13 @@ def start():
     main()
 
 
-def buy(iterations):
+def buy(iterations) -> None:
     for i in range(iterations):
         click_to("./captures/trait/bruiser.png")
         click_to("./captures/trait/mage.png")
 
     
-def checks():  # checks to see if game was interrupted
+def checks() -> None:  # checks to see if game was interrupted
     if onscreen("./captures/play again.png"):
         won_match()
     if onscreen("./captures/dead.PNG"):  # check for loss
@@ -101,7 +101,7 @@ def checks():  # checks to see if game was interrupted
         click_to("./captures/reconnect.png")
 
 
-def main():
+def main() -> None:
     while not onscreen("./captures/2-4.png"):
         buy(5)
         time.sleep(1)
@@ -123,7 +123,7 @@ def main():
         surrender()
 
 
-def end_match():
+def end_match() -> None:
     while not onscreen("./captures/find match ready.png"):  # added a main loop for the end match function to ensure you make it to the find match button.
         while onscreen("./captures/missions ok.png"):
             click_to("./captures/missions ok.png")
@@ -135,7 +135,7 @@ def end_match():
             click_to("./captures/play again.png")
             
             
-def won_match(): 
+def won_match() -> None: 
     print_timer()    
 
     time.sleep(3)
@@ -147,7 +147,7 @@ def won_match():
     queue()
 
     
-def surrender():
+def surrender() -> None:
     click_to("./captures/settings.png")
 
     while not onscreen("./captures/surrender 1.png"):
@@ -173,17 +173,17 @@ def surrender():
     queue()
 
 
-def print_timer():
+def print_timer() -> None:
     global gamecount
     global endtimer
-    endtimer = time.time()
+    endtimer: float = time.time()
     gamecount += 1
-    sec = (endtimer - starttimer)
-    hours = sec // 3600
+    sec: float = (endtimer - starttimer)
+    hours: float = sec // 3600
     sec = sec - hours*3600
-    mu = sec // 60
-    ss = sec - mu*60
-    gamecount2 = str(gamecount)
+    mu: float = sec // 60
+    ss: float = sec - mu*60
+    gamecount2: str = str(gamecount)
     #result_list = str(datetime.timedelta(seconds=sec)).split(".")
     print("-------------------------------------")
     print("Game End")
