@@ -114,7 +114,7 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-1.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
+        while not onscreen("./captures/6-6.PNG"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(5)
             click_to("./captures/reroll.png")
             time.sleep(1)
