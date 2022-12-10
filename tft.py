@@ -85,8 +85,8 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/trait/bruiser.png")
-        click_to("./captures/trait/mage.png")
+        click_to("./captures/trait/lasercorps.png")
+        click_to("./captures/trait/anima squad.png")
 
     
 def checks():  # checks to see if game was interrupted
