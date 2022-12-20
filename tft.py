@@ -133,7 +133,12 @@ def end_match():
             time.sleep(5)
         while onscreen("./captures/play again.png"):
             click_to("./captures/play again.png")
-            
+        while onscreen("./captures/play.png"):
+            click_to("./captures/play.png")
+            time.sleep(5)
+        while onscreen("./captures/confirm.png"):
+            click_to("./captures/confirm.png")
+            time.sleep(5)
             
 def won_match(): 
     print_timer()    
