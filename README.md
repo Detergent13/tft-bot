@@ -1,3 +1,9 @@
+Important: 
+1) with 8.5 you need to rerun the requirements -> `pip install -r requirements.txt`
+The Surrender Button doesn't work, so this is part 1 of the workaround.
+2) in the tft.py near the end 'def surrender():' you have to personally change the '/' to be "fit" your keyboard layout, so the /ff can be executed.
+[here](https://pyautogui.readthedocs.io/en/latest/keyboard.html) under "KEYBOARD_KEYS" you can find the phrasing for the keys.
+
 Thanks for checking out my release!
 
 # Installation:
