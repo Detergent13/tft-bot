@@ -6,15 +6,20 @@ import pyautogui as auto
 from python_imagesearch.imagesearch import imagesearch as search
 import time
 from printy import printy
+import pydirectinput
 
 pkg_resources.require("PyAutoGUI==0.9.50")
 pkg_resources.require("opencv-python==4.5.1.48")
 pkg_resources.require("python-imageseach-drov0==1.0.6")
+pkg_resources.require("PyDirectInput==1.0.4")
 
 auto.FAILSAFE = False
 
 global gamecount
 gamecount = 0
+
+global Version
+Version = "8.5.01"  #added version for the script
 
 # Start utility methods
 def onscreen(path, precision=0.8):
@@ -114,7 +119,7 @@ def main():
     time.sleep(5)
 
     if onscreen("./captures/2-5.png"):
-        while not onscreen("./captures/3-1.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
+        while not onscreen("./captures/6-6.png"):  # change this if you want to surrender at a different stage, also the image recognition struggles with 5 being it sees it as 3 so i had to do 6 as that's seen as a 5
             buy(5)
             click_to("./captures/reroll.png")
             time.sleep(1)
@@ -153,14 +158,13 @@ def won_match():
 
     
 def surrender():
-    click_to("./captures/settings.png")
-
-    while not onscreen("./captures/surrender 1.png"):
-        click_to("./captures/settings.png")  # just in case it gets interrupted or misses
-        time.sleep(1)
     while not onscreen("./captures/surrender 2.png"):
-        click_to("./captures/surrender 1.png")
         checks()  # added a check here for the rare case that the game ended before the surrender finished.
+        pydirectinput.press('enter')
+        pydirectinput.keyDown('shift')  # hold down the shift key
+        pydirectinput.press('7')     # press the 7 key -> shift+7 = /
+        pydirectinput.keyUp('shift')    # release the shift key
+        pydirectinput.press(['f', 'f', 'enter'])
 
     time.sleep(1)
     click_to("./captures/surrender 2.png")
