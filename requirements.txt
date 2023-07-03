@@ -2,4 +2,3 @@ opencv-python==4.5.1.48
 PyAutoGUI==0.9.50
 python-imageseach-drov0==1.0.6
 printy==2.0.1
-PyDirectInput==1.0.4
