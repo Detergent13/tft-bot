@@ -17,7 +17,7 @@ global gamecount
 gamecount = 0
 
 global Version
-Version = "9.0.01"
+Version = "10.0.01"
 
 # Start utility methods
 def onscreen(path, precision=0.8):
@@ -88,7 +88,8 @@ def start():
 
 def buy(iterations):
     for i in range(iterations):
-        click_to("./captures/trait/bruiser.png")
+        click_to("./captures/trait/mosher.png")
+        click_to("./captures/trait/guardian.png")
 
     
 def checks():  # checks to see if game was interrupted
