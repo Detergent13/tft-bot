@@ -8,7 +8,7 @@ import time
 from printy import printy
 
 pkg_resources.require("PyAutoGUI==0.9.50")
-pkg_resources.require("opencv-python==4.5.1.48")
+pkg_resources.require("opencv-python==4.9.0.80")
 pkg_resources.require("python-imageseach-drov0==1.0.6")
 
 auto.FAILSAFE = False
