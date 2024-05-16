@@ -1,3 +1,11 @@
+> [!IMPORTANT]
+> **As of May 16th 2024, this repository is deprecated due to the advent of Riot Vanguard coming to LoL.**
+> If you still want a bot, check out [Alune](https://github.com/TeamFightTacticsBots/Alune), which works cross-platform on Android emulators.
+
+Please feel free to get in touch still! It's been a good run :) 
+
+---
+
 Thanks for checking out my release!
 
 # Installation:
